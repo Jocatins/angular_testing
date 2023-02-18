@@ -1,27 +1,32 @@
 # AngularUnitTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+# spyOn and createSpyObject
 
-## Development server
+`spyOn` is a function that allows you to create a "spy" on an existing function or method.
+A spy is a function that can be used to track the calls to the original function, as well as modify its behavior during tests.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+it('should call myFunction', () => {
+const myObject = {
+myFunction: () => {}
+};
 
-## Code scaffolding
+spyOn(myObject, 'myFunction');
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+myObject.myFunction();
 
-## Build
+expect(myObject.myFunction).toHaveBeenCalled();
+});
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`createSpyObject` is a function that allows you to create a mock object with multiple methods.
+This is useful when you want to test a component that depends on a service,
+but you don't want to actually use the real service during testing.
 
-## Running unit tests
+it('should call myService.getUsers', () => {
+const myService = jasmine.createSpyObj('MyService', ['getUsers']);
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+myService.getUsers.and.returnValue(of([]));
 
-## Running end-to-end tests
+myComponent.ngOnInit();
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+expect(myService.getUsers).toHaveBeenCalled();
+});
