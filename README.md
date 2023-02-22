@@ -30,3 +30,21 @@ myComponent.ngOnInit();
 
 expect(myService.getUsers).toHaveBeenCalled();
 });
+
+# @ViewChild
+
+@ViewChild is a decorator in Angular that is used to access a child component, directive, or DOM element from a parent component.
+
+The @ViewChild decorator can be used in two ways:
+`1` To get a reference to a single child component or directive:
+
+@ViewChild(childComponent) childComponent : ChildComponent
+
+This syntax declares a property named childComponent and assigns it a reference to the first instance of MyChildComponent found in the parent component's view.
+
+`2` To get a reference to a single DOM element:
+
+@ViewChild('myDiv') myDiv: ElementRef;
+
+The decorator takes in two arguments, a selector that identifies the child element or component,
+and an options object that specifies whether the query should be static or dynamic

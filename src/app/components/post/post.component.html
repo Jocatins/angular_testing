@@ -1,0 +1,8 @@
+<!-- The post property is then used in the child component's template to
+  display the post passed in from the parent component -->
+
+<div *ngIf="post">
+    <a [routerLink]="['detail', post.id]">{{post.title}}</a>
+
+    <button (click)="onDeletePost($event)">Delete Post</button>
+</div>
