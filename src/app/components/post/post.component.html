@@ -2,7 +2,8 @@
   display the post passed in from the parent component -->
 
 <div *ngIf="post">
-    <a [routerLink]="['detail', post.id]">{{post.title}}</a>
+  <a [routerLink]="['detail', post.id]">{{post.title}}</a>
+  <p>{{post.body}}</p>
 
-    <button (click)="onDeletePost($event)">Delete Post</button>
+  <button (click)="onDeletePost($event)">Delete Post</button>
 </div>

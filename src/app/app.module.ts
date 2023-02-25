@@ -12,6 +12,7 @@ import { PostComponent } from './components/post/post.component';
   declarations: [AppComponent, StenghtPipe, PostsComponent, PostComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

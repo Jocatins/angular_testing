@@ -1,11 +1,16 @@
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { Post } from 'src/app/models/Post';
+import { PostService } from 'src/app/services/Post/post.service';
+import { PostComponent } from '../post/post.component';
 import { PostsComponent } from './posts.component';
 
 describe('Posts Component', () => {
   let POSTS: Post[];
   let component: PostsComponent;
   let mockPostService: any;
+  let fixture: ComponentFixture<PostsComponent>;
 
   beforeEach(() => {
     POSTS = [
@@ -31,7 +36,33 @@ describe('Posts Component', () => {
       },
     ];
     mockPostService = jasmine.createSpyObj(['getPosts', 'deletePost']);
-    component = new PostsComponent(mockPostService);
+    //  component = new PostsComponent(mockPostService);
+
+    TestBed.configureTestingModule({
+      declarations: [PostsComponent, PostComponent],
+      providers: [
+        {
+          provide: PostService,
+          useValue: mockPostService,
+        },
+      ],
+    });
+    fixture = TestBed.createComponent(PostsComponent);
+    component = fixture.componentInstance;
+  });
+
+  it('should set posts directly from the service', () => {
+    mockPostService.getPosts.and.returnValue(of(POSTS));
+    // component.ngOnInit();
+    fixture.detectChanges();
+    expect(component.posts.length).toBe(4);
+  });
+  it('should create one post Child Element for each post', () => {
+    mockPostService.getPosts.and.returnValue(of(POSTS));
+    fixture.detectChanges();
+    const debugElement = fixture.debugElement;
+    const postElement = debugElement.queryAll(By.css('.posts'));
+    expect(postElement.length).toEqual(POSTS.length);
   });
 
   describe('delete method', () => {

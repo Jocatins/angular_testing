@@ -48,3 +48,11 @@ This syntax declares a property named childComponent and assigns it a reference 
 
 The decorator takes in two arguments, a selector that identifies the child element or component,
 and an options object that specifies whether the query should be static or dynamic
+
+# Component Fixture
+
+It has the component instance and the native element to access the component template, component's
+methods and functions. Its data-type is any.
+The angular fixture provides the component's element directly through the fixture.nativeElement
+
+The `DebugElement` offers query methods that work on all supported platforms
