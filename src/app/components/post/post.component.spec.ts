@@ -2,7 +2,6 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { Post } from './../../models/Post';
 import { PostComponent } from './post.component';
 import { first } from 'rxjs';
-
 import { By } from '@angular/platform-browser';
 
 let fixture: ComponentFixture<PostComponent>;

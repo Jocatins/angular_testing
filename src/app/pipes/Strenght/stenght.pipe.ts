@@ -4,6 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'stenght',
 })
 export class StenghtPipe implements PipeTransform {
+  title = 'Strength Pipe';
   transform(value: number): string {
     if (value < 10) {
       return value + '(weak)';

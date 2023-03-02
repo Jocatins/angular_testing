@@ -1,6 +1,10 @@
 import { StenghtPipe } from './stenght.pipe';
 
 describe('StenghtPipe', () => {
+  it('should have a title name Strength Pipe', () => {
+    const pipe = new StenghtPipe();
+    expect(pipe.title).toContain('Strength Pipe');
+  });
   it('create a pipe instance', () => {
     const pipe = new StenghtPipe();
     expect(pipe).toBeTruthy();
